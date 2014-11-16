@@ -71,7 +71,8 @@ module.exports = function (grunt) {
                     lineNumbers: true
                 },
                 files: {
-                    './assets/css/app.css': './assets/sass/app.scss'
+                    './assets/css/app.css': './assets/sass/app.scss',
+                    './assets/css/hotella-res.css': './assets/sass/iframe.scss'
                 }
                 /*expand: true,
                 cwd: './assets/sass/',
@@ -82,14 +83,34 @@ module.exports = function (grunt) {
         },
         // Run: `grunt watch` from command line for this section to take effect
         watch: {
-            files: ['<%= jshint.files %>', './assets/sass/app.scss'],
+            files: ['<%= jshint.files %>', './assets/sass/app.scss', './assets/sass/iframe.scss'],
+            options: { livereload: true },
             tasks: ['default']
+        },
+
+        //Run express server for livereload purposes
+        express: {
+            all: {
+                options: {
+                    port: 9000,
+                    bases: ['.'],
+                    livereload: true
+                }
+            }
+        },
+
+        open: {
+            all: {
+                path: 'http://localhost:<%= express.all.options.port %>'
+            }
         }
 
     });
 
     // Default Task
     grunt.registerTask('default', ['jshint', 'sass:dev']);
+
+    grunt.registerTask('serve', ['jshint', 'sass:dev', 'express', 'open', 'watch']);
 
     // Release Task
     grunt.registerTask('release', ['jshint', 'test', 'requirejs', 'sass:dist', 'imagemin', 'htmlmin']);

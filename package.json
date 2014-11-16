@@ -10,7 +10,10 @@
     "grunt-contrib-watch": "^0.6.1",
     "time-grunt": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt-express": "^1.4.1",
+    "grunt-open": "^0.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
