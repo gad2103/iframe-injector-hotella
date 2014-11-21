@@ -1,0 +1,53 @@
+// GLOBALS
+$max-width: 960px;
+$global-padding: 20px;
+$inner-width: $max-width - 2*$global-padding; 
+$left-right-width: 450px;
+
+@debug $inner-width;
+
+@media only screen and (max-width : 1104px) {
+  div#main {
+    div#pagecontent-inner {
+      width: $max-width;
+    }
+    div#content {
+        max-width: $max-width;
+        width: $max-width;
+        padding: 126px 0;
+        margin: 0;
+        overflow: hidden;
+        #content-left {
+          width: $inner-width;
+          text-align: center;
+          .panel {
+              h3 {
+                  text-align: center;
+                  padding-top: 7px;
+                  span {
+                      display: inline-block;
+                      float: none;
+                  }
+              }
+              .header {
+                  .button.button2 {
+                      float: none;
+                  }
+              }
+              text-align: center;
+              display: inline-block;
+              vertical-align: top;
+              a.button.button2, a.button.button2 span {
+                  float:none;
+              }
+              width: 220px;
+          }
+        }
+        #content-right {
+          width: $inner-width;
+          padding: 0 $global-padding;
+        }
+    }
+  }
+}
+

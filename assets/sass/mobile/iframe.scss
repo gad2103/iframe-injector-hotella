@@ -1,0 +1,442 @@
+// GLOBALS
+$dark-bg: #171c21;
+$blue-border: #698096;
+$subpanel-gray: #747474;
+$panel-item-bg: #fff;
+$link-color: rgb(181, 124, 78);
+$large-panel-outline: #d1c4bb;
+$border: 1px solid;
+$panel-dark: rgba(41,11,9,0.1);
+$panel-lighter: rgba(255, 255, 255, 0.29);
+$panel-shaded: rgba(199,201,189,0.1);
+$blue-border-lighter: #dde6f0;
+$fixedNavHeight: 113px;
+$brown-text: #A17658;
+
+// MIXINS/EXTENDS
+.clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+.center-block {
+    margin: 0 auto;
+}
+.center-text {
+    text-align: center;
+}
+.hotella-table {
+    table {
+        .room-type {
+            color: $brown-text;
+        }
+        &#LstDispo {
+            .rates-row .room-type {
+                background-color: $panel-shaded;
+            }
+            .room-notes {
+                background-color: $panel-lighter;
+            }
+            .rates-plan {
+                font-weight: normal;
+                text-transform: uppercase;
+                background-color: $panel-shaded;
+                color: $brown-text;
+            }
+        }
+        &.RateBreakdownGrid { 
+            table-layout: fixed;
+            width: 100% !important;
+            border: $border $large-panel-outline;
+            border-width: 1px 0;
+            tr {
+                th, td {
+                    padding: 1em;
+                    background-color: $panel-dark;
+                    border: solid $large-panel-outline;
+                    border-width: 0 1px 0 1px;
+                    text-align: center;
+                    font-size: 1.125em;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                }
+                td {
+                    background-color: $panel-lighter;
+                    font-size: 16px;
+                }
+          }
+        }
+        background: transparent;
+        border-radius: 0;
+        font-size: inherit;
+        .room-type {
+            font-weight: normal;
+            font-size: 1.55em;
+        }
+        .rates-btn {
+            width: auto;
+        }
+        .rates-period, .rates-rate {
+            color: $dark-bg;
+        }
+        .button-col-left {
+            float: none;
+            width: auto;
+            @extend .center-text;
+        }
+        tr {
+            td {
+                border-top: 0;
+                &.room-row {
+                    &.odd {
+                        background-color: $panel-dark;
+                    }
+                    &.even {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+}
+.hotella-subtitle {
+    .subtitle {
+        background-color: $panel-lighter;
+        border: $border $large-panel-outline;
+        padding: 12px;
+        font-size: 26px;
+        text-transform: uppercase;
+        font-weight: normal;
+        color: $brown-text;
+        @extend .center-text;
+    }
+}
+
+// Backgrounds
+body {
+    background: $dark-bg !important;
+    color: $dark-bg !important;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+}
+h3 {
+    padding: 10px !important;
+    color: $dark-bg !important;
+    border-bottom: none;
+    margin: 0 !important;
+    background: $panel-shaded;
+    text-align: center;
+    font-size: 1.5em !important;
+}
+body a {
+    color: $link-color;
+}
+body form select {
+    max-width: none !important;
+}
+
+.footerlinks {
+    @extend .center-text;
+}
+
+// General page elements
+/* -- BUTTONS -- */
+.button-col-left {
+    display: inline-block !important;
+    //float: none !important;
+    width: auto !important;
+}
+.button-col-right {
+    float:right !important;
+    display: inline-block !important;
+    width: auto !important;
+}
+
+// List page
+form:not([name="hotelsel"]):not([name="address"]) {
+    //background-color: $panel-shaded;
+    h3 { display: none; }
+    > div.clear + div > div.details {
+        box-sizing: border-box;
+        @extend .clearfix;
+        width: 95%;
+        margin: 0 auto;
+        color: rgb(50,59,66);
+        border: $border;
+        font-size: 14px;
+        position: relative;
+        > div:first-child, > div:first-child + div {
+            display: none;
+        }
+    }
+    .details {
+        h3 { display: none; }
+        .details-label, .field-label {
+            padding-top: 10px;
+            width: 47%;
+            float: left;
+            clear: right;
+        }
+        .details-value {
+            float: right;
+            padding-top: 10px;
+        }
+    }
+    &[name="rpldetails"] {
+        .details-value:nth-of-type(24) {
+            clear: both;
+        }
+        .details-value:nth-of-type(22) {
+            padding: 40px;
+            margin-top: 10px;
+            font-weight: normal;
+            background: $panel-lighter;
+        }
+        .details-label:nth-of-type(n + 24), .details-value:nth-of-type(n + 24) {
+            float: none !important;
+            @extend .hotella-table;
+        }
+       #lblTotalText {
+           position: absolute;
+           right: 10px;
+       }
+    }
+    &[name="review"] {
+        padding: 0 10px;
+        @extend .hotella-subtitle;
+        #pnlCardDetails, #pnlAdditionalInformation, #pnlAdditionalInformation + br + p {
+            @extend .center-text;
+        }
+        #pnlResDetails {
+            position: relative;
+            #lblTaxInfos {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                .details-value {
+                    width: auto;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+            .details-label, .field-label {
+                padding-top: 10px;
+                width: 47%;
+                clear: right;
+            }
+            .details-value {
+                float: right;
+                margin-top: -20px;
+            }
+            > div:nth-of-type(17), > div:nth-of-type(19) {
+                @extend .center-text;
+                width: 100%;
+            }
+            > div:nth-of-type(18), > div:nth-of-type(20) {
+                margin-top: 10px;
+                @extend .center-text;
+                width: 100%;
+            }
+            > div:nth-of-type(22) {
+                    float: none;
+                    margin-top: 10px;
+            }
+            @extend .hotella-table;
+            div.details-value {
+                padding-top: 0;
+            }
+            .sect-title, .sect-hdr {
+                clear:both;
+            }
+            #lblTotalText {
+                position: absolute;
+                right: 0;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+form[name="address"] {
+    @extend .hotella-subtitle;
+    #lblPropertyNameText {
+        display:none;
+    }
+    .val-input {
+        background: transparent;
+        border: $border;
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+    }
+    .w99 {
+        width: 49%;
+        margin-right: 1%;
+        display: block;
+        float: left;
+    }
+    .formbox.opened {
+        .header {
+            display: none;
+        }
+    }
+    textarea { background: transparent; }
+    > div.clear + div > div.details {
+        > div + div + div + div, .sect-hdr {
+            @extend .center-text;
+        }
+        select {
+            font-size: 26px;
+            background: $dark-bg;
+            color: #fff;
+        }
+        input[type="text"] {
+            max-width: none;
+            font-size: 1em;
+            width: 100%;
+            color: $dark-bg;
+            box-sizing: border-box;
+        }
+        > div:first-child, > div:first-child + div {
+            display: none;
+        }
+    }
+}
+span#lblTotalText {
+    color: $brown-text;
+}
+#pnlBestRate, #pnlDispo {
+    width: 95%;
+    @extend .center-block;
+    border: $border $large-panel-outline;
+    @extend .hotella-table;
+}
+button, input[type=button], input[type=submit], #wmap_filter_container #wmap_reset, input[type=reset] {
+    background: $dark-bg !important;
+    color: $blue-border-lighter !important;
+    border: $border $blue-border !important;
+    padding: 2em !important;
+    border-radius: 0 !important;
+    line-height: 0;
+}
+input[type=text], input[type=password] {
+    padding: 11px 7px !important;
+    border: $border $blue-border;
+    background: transparent;
+    color: #fff;
+}
+div#contentContainer {
+    background: url(http://backgrounds.spacecrafted.com/09_grey_linen.png);
+    display: inline-block;
+    width: 100%;
+    padding: 0 !important;
+    > img {
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        position: relative;
+        content: ' some thing ';
+        &:before {
+            content: ' ';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: $fixedNavHeight;
+            display: block;
+            background-image: url(http://f2e15a15be09f4e0458f-b05a0b4c64717bd92173f8f1c2ed55e9.r37.cf2.rackcdn.com/7455f235f96342b98f9d19a6340dc889.png);
+            background-color: $dark-bg; 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border: solid $dark-bg;
+            border-width: 10px 0 10px 0;
+            z-index: 300;
+        }
+    }
+    ol.progtrckr {
+        margin: $fixedNavHeight + 20 10px 50px;
+        li {
+            &.progtrckr-done {
+                color: $dark-bg;
+                border-bottom: 4px solid $blue-border; 
+            }
+        }
+    }
+    form[name="hotelsel"] {
+        padding: 0 10px;
+        margin-bottom: 20px;
+        h3 {
+            display: none;
+            padding: 10px;
+            color: $dark-bg;
+            border-bottom: none;
+            margin: 0;
+            background: $panel-shaded;
+            text-align: center;
+            font-size: 1.5em;
+        }
+    }
+    #reservationPanel {
+        background: transparent;
+        padding: 20px;
+        padding-top: 40px;
+        border: $border $dark-bg;
+        border-top: none;
+        background: $dark-bg;
+        select {
+            background: transparent;
+            color: #fff;
+            border: $border $blue-border;
+            border-radius: 0 !important;
+            height: 40px;
+        }
+        #amendCancelLinks {
+            margin: 0 0 20px;
+            text-align: center;
+            width: auto;
+        }
+        .dates label {
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .reserve input {
+            display: block;
+            margin: 0 auto;
+            float: none;
+        }
+        ol {
+            width: 300px;
+            margin: 0 auto;
+            li {
+            }
+        }
+        .apart-info {
+            height: auto;
+            ol {
+                text-align: center;
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    position: static;
+                    width: 100%;
+                    select {
+                        width: 100% !important;
+                    }
+                    label {
+                        color: #fff; 
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+}
+#footer #footerMenu {
+    margin: 0 !important;
+}

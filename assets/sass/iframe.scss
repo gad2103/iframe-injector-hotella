@@ -1,5 +1,7 @@
 // IFRAME STYLES
 
+@import 'queries';
+
 //globals
 $dark-bg: #171c21;
 $blue-border: #698096;
@@ -11,6 +13,11 @@ $border: 1px solid;
 $panel-dark: rgba(41,11,9,0.1);
 $panel-lighter: rgba(255, 255, 255, 0.29);
 
+body.useWebFonts {
+    background-color: transparent;
+    background: url(http://backgrounds.spacecrafted.com/09_grey_linen.png);
+}
+
 body a {
     color: $link-color !important;
 }
@@ -21,22 +28,20 @@ body a {
 }
 
 a.ui-selectmenu {
-    background-color: rgba(249, 249, 249, 0.29);
+    background-color: transparent;
     border-radius: 0;
     border: 1px solid $blue-border;
     color: #fff;
 }
 
 div#main {
-    background-color: transparent;
-    background: url(http://backgrounds.spacecrafted.com/09_grey_linen.png);
     width: 100%;
     height: 100%;
+    background-color: transparent;
 }
 
 #content {
     padding-top: 126px;
-    width: 92%;
     margin: 0 auto;
     max-width: 1104px;
 }
@@ -47,7 +52,7 @@ div#pagecontent {
     background-size: 66% 113px;
 }
 div#pagecontent-inner {
-    width:auto;
+    width:1104px;
 }
 div#top-elements {
     height: 113px;
@@ -57,8 +62,10 @@ div#top-elements {
     position: fixed;
     width: 100%;
     z-index: 300;
+    top:0;
+    left:0;
     a.headerbanner-link{
-        width: 21%;
+        width: 292px;
         margin-top: -12px;
         text-align: center;
         background-image: url(http://f2e15a15be09f4e0458f-b05a0b4c64717bd92173f8f1c2ed55e9.r37.cf2.rackcdn.com/7455f235f96342b98f9d19a6340dc889.png);
@@ -66,13 +73,16 @@ div#top-elements {
         background-repeat: no-repeat;
         left:7%;
         z-index: 301;
-   }
+    }
 }
 
 #tbLayerDiv {
     border-radius: 0;
     background-color: $panel-item-bg !important;
     border: 2px solid $blue-border;
+    left: 0 !important;
+    margin: 0 auto !important;
+    right: 0 !important;
 }
 #tbLayerBackground {
     position: fixed;
@@ -95,6 +105,7 @@ div#top-elements {
             border-top: 1px solid;
             border-bottom: 1px solid;
             box-sizing: border-box;
+            font-weight: normal;
         }
     }
 }
@@ -151,6 +162,9 @@ a.ui-selectmenu span.ui-icon-triangle-1-s {
     .inner {
         .button{
             @extend .button;
+            &.change-room-btn span {
+                color: #fff;
+            }
         }
         .form-field-row {
             label, .field-displayvalue, .field-displayvalue span {
@@ -161,13 +175,34 @@ a.ui-selectmenu span.ui-icon-triangle-1-s {
     }
 }
 .formbox, .packagebox {
+    .inner {
+        background: transparent;
+    }
     outline: 1px solid $large-panel-outline;
-    background: $panel-dark;
+    //background: $panel-dark;
+    .header {
+        background: $panel-dark;
+    }
     .field {
         .textinput, a.ui-selectmenu {
             border: $border $large-panel-outline;
-            background: $panel-lighter;
+            //background: $panel-lighter;
         }
+    }
+    .textinput input, .textinput span {
+        height: 40px;
+    }
+}
+
+.formbox .inner .form .form-field-row.error .textinput, .formbox .inner .form .form-field-row label {
+    padding-top: 10px;
+}
+.formbox.reviewbox a.button.button2 {
+    padding: 0;
+    border: none;
+    background: none;
+    span {
+        color: $link-color;
     }
 }
 .button.button4 span.arrow {
@@ -176,12 +211,21 @@ a.ui-selectmenu span.ui-icon-triangle-1-s {
 #tooltipLayer {
     width: auto !important;
 }
-#content-left > .panel.grad1 > .inner {
-    display: block !important;
+#content-left > .panel.grad1 {
+    .header h3 {
+        padding-left: 2px;
+    }
+    > .inner {
+        display: block !important;
+        padding-left: 2px;
+    }
 }
-.panel.grad2 .header h3 .button2 {
-    float: left;
-    margin: 16px 0 0 10px;
+.panel.grad2 .header h3 {
+    padding-left: 2px;
+    .button2 {
+        float: left;
+        margin: 16px 0 0 2px;
+    }
 }
 .button {
     background-color: $dark-bg;
@@ -295,10 +339,19 @@ a.ui-selectmenu span.ui-icon-triangle-1-s {
     }
 } 
 
+.footerlinks {
+    line-height: 5.4em;
+    background: $panel-dark;
+    width: 100%;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+}
+
 // Begin big ass long style overrides
-.button.button1, .button.button1 span, .button.button1:hover, .button.button1.hover, .button.button1:hover span, .button.button1.hover span, .button.button2, .button.button2 span, .button.button2:hover, .button.button2.hover, .button.button2:hover span, .button.button2.hover span, .button.button3, .button.button3 span, .button.button3:hover, .button.button3.hover, .button.button3:hover span, .button.button3.hover span, .button.button4, .button.button4 span, .button.button4 span.arrow, .button.button4:hover, .button.button4.hover, .button.button4:hover span, .button.button4.hover span, .button.button4:hover span.arrow, .button.button4.hover span.arrow, .button.button5, .button.button5 span, .button.button5:hover, .button.button5.hover, .button.button5:hover span, .button.button5.hover span, .toggleBtn, .toggleBtn:hover, .toggleBtn.hover, .opened .toggleBtn, .opened .toggleBtn:hover, .opened .toggleBtn.hover, .iconbutton, a.ui-selectmenu, .textinput, textarea, .dateinput-trigger, #menu li, #menu li.left-edges, #menu li.right-edges, #menu li.seperator span, #menu li.active a, .hotelsearchbox .header, .refinesearchbox .header, .hotelresultlist .hotel .header, .hotelresultlist .hotel .inner .hotel_details .vmenu ul, .hotelresultlist .hotel .inner .hotel_details .bottom, .hotelresultlist .hotel .header .price .left, .hotelresultlist .hotel .header .price .right, .hotelresultlist .hotel .inner a span.arrow, .roomupgrade .open_gallery_in_lightbox span, .hoteldetailbox .header, .hoteldetailbox span.star, .hoteldetailbox span.halfstar, .hoteldetailbox .inner .rightcontent .price .left, .hoteldetailbox .inner .rightcontent .price .right, .panel.grad1 .header, .panel.grad1 .header .bottom, .panel.grad1 .inner, .panel.grad1 .bottom, .panel.grad2 .header, .panel.grad2 .header .bottom, .panel.grad2 .inner, .panel.roomselection .subpanel.multiroom .subpanel-content, .panel.roomselection .subpanel.multiroom.active .subpanel-content, .panel.roomselection .subpanel .inner .roomtotal_panel, .panel.roomselection .subpanel.multiroom .bottom, .panel.roomselection.withtotal .bottom_panel, .panel.grad3, .panel.verisign, .panel.verisign:hover, .panel.verisign.hover, .filterPanel, #pricerangeslider.ui-widget-content, #pricerangeslider .ui-state-default, #pricerangeslider .ui-widget-content .ui-state-default, .contentslider .item .package-description a span.arrow, .layer1 .border-top, .layer1 .border-right, .layer .border-bottom, .layer1 .border-left, .layer1 .edge-lt, .layer1 .edge-rt, .layer1 .edge-lb, .layer1 .edge-rb, .layer1 .content, .package-detail-layer .header, .white-detail-layer .border-top, .white-detail-layer .border-right, .white-detail-layer .border-bottom, .white-detail-layer .border-left, .white-detail-layer .edge-lt, .white-detail-layer .edge-rt, .white-detail-layer .edge-lb, .white-detail-layer .edge-rb, .white-detail-layer .content, .room .content .vmenu li.video span.icon, .roomrate .content .vmenu li.video span.icon, .roomrate .content .collapsed_view a.video span.icon, #ratescalendar .header .arrDayDec, #ratescalendar .header .arrDayInc, #ratescalendar .header .title, .ratelistview_roomsontop .room .header, .ratelistview_roomsontop .room .rooms_left_warning, .ratelistview_roomsontop .room .room_details .vmenu ul, .ratelistview_roomsontop .room .room_details .vmenu li.sep, .ratelistview_roomsontop .room .room_details .bottom, .ratelistview_roomsontop .room .content .rates .rate.opened .header, .ratelistview_roomsontop .room .content .rates .rate .header .rateicons .rateicon, .ratelistview_roomsontop .room .content .rates .rate .header .price .right, .ratelistview_roomsontop .room .content .rates .rate a span.arrow, .ratelistview_roomsontop .room .content .rates .rate .border, .ratelistview_ratesontop .rate .header, .ratelistview_ratesontop .room .rooms_left_warning, .ratelistview_ratesontop .room .rooms_left_warning span.icon_warning, .ratelistview_ratesontop .room .room_details .vmenu ul, .ratelistview_ratesontop .room .room_details .vmenu li.sep, .ratelistview_ratesontop .room .room_details .bottom, .ratelistview_ratesontop .room_details .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_ratesontop .rate .content .rooms .room .header, .ratelistview_ratesontop .rate .header .rateicons .rateicon, .ratelistview_ratesontop .rate a.details span.arrow, .ratelistview_ratesontop .rate .content .rooms .room .header .price .left, .ratelistview_ratesontop .rate .content .rooms .room .header .price .right, .ratelistview_ratesontop .rooms .room .content .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_ratesontop .room .content .vmenu ul, .ratelistview_ratesontop .room .content .vmenu li.sep, .ratelistview_ratesontop .room .content .expanded_view .bottom, .ratelistview_combined .roomrate .header, .ratelistview_combined .header .price .left, .ratelistview_combined .header .price .right, .ratelistview_combined .roomrate .header .rateicons .rateicon, .ratelistview_combined .roomrate .rooms_left_warning, .ratelistview_combined .roomrate .rooms_left_warning span.icon_warning, .ratelistview_combined .roomrate .content .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_combined .roomrate .content .vmenu ul, .ratelistview_combined .roomrate .content .vmenu li.sep, .ratelistview_combined .roomrate .content .expanded_view .bottom, .ratelistview_combined .roomrate .content .expanded_view .rateicons .rateicon, .ratelistview_combined.combined2013 .roomrate .rooms_left_warning .bkgLeft, .ratelistview_combined.combined2013 .roomrate .rooms_left_warning .bkgRight, .formbox .header, .packagebox .header, .formbox .errormessage, .formbox .errormessage .border-top, .formbox .errormessage .border-right, .formbox .errormessage .border-bottom, .formbox .errormessage .border-left, .formbox .errormessage .edge-lt, .formbox .errormessage .edge-rt, .formbox .errormessage .edge-lb, .formbox .errormessage .edge-rb, .formbox .errormessage .content span.icon_warning, .simple-login-form .errormessage, .simple-login-form .errormessage .border-top, .simple-login-form .errormessage .border-right, .simple-login-form .errormessage .border-bottom, .simple-login-form .errormessage .border-left, .simple-login-form .errormessage .edge-lt, .simple-login-form .errormessage .edge-rt, .simple-login-form .errormessage .edge-lb, .simple-login-form .errormessage .edge-rb, .simple-login-form .errormessage .content span.icon_warning, .packagebox .inner .package, .packagebox .inner .package .bar .right .price, .packagebox .inner .roomupgrade, .packagebox .inner .roomupgrade .bar .right .price, .form-group, .buttonbar, .reviewbox .header a span.arrow, .completionbox .header a.details span.arrow, .completionbox .inner a span.arrow, .panel.gallery .header, .panel.gallery .inner .content-image .img-container .jump-left .arrow, .panel.gallery .inner .content-image .img-container .jump-right .arrow, .panel.gallery .inner .content-image .img-container .slideshow-pause .icon, .panel.maps .header, #occupancyinfoLayer .top, #occupancyinfoLayer .bottom, .tabbed-contents li span {
- background-image: none; 
- -webkit-background-size: 0;
+.iconbutton.iconbutton1, .button.button1, .button.button1 span, .button.button1:hover, .button.button1.hover, .button.button1:hover span, .button.button1.hover span, .button.button2, .button.button2 span, .button.button2:hover, .button.button2.hover, .button.button2:hover span, .button.button2.hover span, .button.button3, .button.button3 span, .button.button3:hover, .button.button3.hover, .button.button3:hover span, .button.button3.hover span, .button.button4, .button.button4 span, .button.button4 span.arrow, .button.button4:hover, .button.button4.hover, .button.button4:hover span, .button.button4.hover span, .button.button4:hover span.arrow, .button.button4.hover span.arrow, .button.button5, .button.button5 span, .button.button5:hover, .button.button5.hover, .button.button5:hover span, .button.button5.hover span, .toggleBtn, .toggleBtn:hover, .toggleBtn.hover, .opened .toggleBtn, .opened .toggleBtn:hover, .opened .toggleBtn.hover, a.ui-selectmenu, .textinput, textarea, .dateinput-trigger, #menu li, #menu li.left-edges, #menu li.right-edges, #menu li.seperator span, #menu li.active a, .hotelsearchbox .header, .refinesearchbox .header, .hotelresultlist .hotel .header, .hotelresultlist .hotel .inner .hotel_details .vmenu ul, .hotelresultlist .hotel .inner .hotel_details .bottom, .hotelresultlist .hotel .header .price .left, .hotelresultlist .hotel .header .price .right, .hotelresultlist .hotel .inner a span.arrow, .roomupgrade .open_gallery_in_lightbox span, .hoteldetailbox .header, .hoteldetailbox span.star, .hoteldetailbox span.halfstar, .hoteldetailbox .inner .rightcontent .price .left, .hoteldetailbox .inner .rightcontent .price .right, .panel.grad1 .header, .panel.grad1 .header .bottom, .panel.grad1 .inner, .panel.grad1 .bottom, .panel.grad2 .header, .panel.grad2 .header .bottom, .panel.grad2 .inner, .panel.roomselection .subpanel.multiroom .subpanel-content, .panel.roomselection .subpanel.multiroom.active .subpanel-content, .panel.roomselection .subpanel .inner .roomtotal_panel, .panel.roomselection .subpanel.multiroom .bottom, .panel.roomselection.withtotal .bottom_panel, .panel.grad3, .panel.verisign, .panel.verisign:hover, .panel.verisign.hover, .filterPanel, #pricerangeslider.ui-widget-content, #pricerangeslider .ui-state-default, #pricerangeslider .ui-widget-content .ui-state-default, .contentslider .item .package-description a span.arrow, .layer1 .border-top, .layer1 .border-right, .layer .border-bottom, .layer1 .border-left, .layer1 .edge-lt, .layer1 .edge-rt, .layer1 .edge-lb, .layer1 .edge-rb, .layer1 .content, .package-detail-layer .header, .white-detail-layer .border-top, .white-detail-layer .border-right, .white-detail-layer .border-bottom, .white-detail-layer .border-left, .white-detail-layer .edge-lt, .white-detail-layer .edge-rt, .white-detail-layer .edge-lb, .white-detail-layer .edge-rb, .white-detail-layer .content, .room .content .vmenu li.video span.icon, .roomrate .content .vmenu li.video span.icon, .roomrate .content .collapsed_view a.video span.icon, #ratescalendar .header .arrDayDec, #ratescalendar .header .arrDayInc, #ratescalendar .header .title, .ratelistview_roomsontop .room .header, .ratelistview_roomsontop .room .rooms_left_warning, .ratelistview_roomsontop .room .room_details .vmenu ul, .ratelistview_roomsontop .room .room_details .vmenu li.sep, .ratelistview_roomsontop .room .room_details .bottom, .ratelistview_roomsontop .room .content .rates .rate.opened .header, .ratelistview_roomsontop .room .content .rates .rate .header .rateicons .rateicon, .ratelistview_roomsontop .room .content .rates .rate .header .price .right, .ratelistview_roomsontop .room .content .rates .rate a span.arrow, .ratelistview_roomsontop .room .content .rates .rate .border, .ratelistview_ratesontop .rate .header, .ratelistview_ratesontop .room .rooms_left_warning, .ratelistview_ratesontop .room .rooms_left_warning span.icon_warning, .ratelistview_ratesontop .room .room_details .vmenu ul, .ratelistview_ratesontop .room .room_details .vmenu li.sep, .ratelistview_ratesontop .room .room_details .bottom, .ratelistview_ratesontop .room_details .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_ratesontop .rate .content .rooms .room .header, .ratelistview_ratesontop .rate .header .rateicons .rateicon, .ratelistview_ratesontop .rate a.details span.arrow, .ratelistview_ratesontop .rate .content .rooms .room .header .price .left, .ratelistview_ratesontop .rate .content .rooms .room .header .price .right, .ratelistview_ratesontop .rooms .room .content .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_ratesontop .room .content .vmenu ul, .ratelistview_ratesontop .room .content .vmenu li.sep, .ratelistview_ratesontop .room .content .expanded_view .bottom, .ratelistview_combined .roomrate .header, .ratelistview_combined .header .price .left, .ratelistview_combined .header .price .right, .ratelistview_combined .roomrate .header .rateicons .rateicon, .ratelistview_combined .roomrate .rooms_left_warning, .ratelistview_combined .roomrate .rooms_left_warning span.icon_warning, .ratelistview_combined .roomrate .content .images .innerimagegallery_thumbs li.open_gallery_in_lightbox span, .ratelistview_combined .roomrate .content .vmenu ul, .ratelistview_combined .roomrate .content .vmenu li.sep, .ratelistview_combined .roomrate .content .expanded_view .bottom, .ratelistview_combined .roomrate .content .expanded_view .rateicons .rateicon, .ratelistview_combined.combined2013 .roomrate .rooms_left_warning .bkgLeft, .ratelistview_combined.combined2013 .roomrate .rooms_left_warning .bkgRight, .formbox .header, .packagebox .header, .formbox .errormessage, .formbox .errormessage .border-top, .formbox .errormessage .border-right, .formbox .errormessage .border-bottom, .formbox .errormessage .border-left, .formbox .errormessage .edge-lt, .formbox .errormessage .edge-rt, .formbox .errormessage .edge-lb, .formbox .errormessage .edge-rb, .formbox .errormessage .content span.icon_warning, .simple-login-form .errormessage, .simple-login-form .errormessage .border-top, .simple-login-form .errormessage .border-right, .simple-login-form .errormessage .border-bottom, .simple-login-form .errormessage .border-left, .simple-login-form .errormessage .edge-lt, .simple-login-form .errormessage .edge-rt, .simple-login-form .errormessage .edge-lb, .simple-login-form .errormessage .edge-rb, .simple-login-form .errormessage .content span.icon_warning, .packagebox .inner .package, .packagebox .inner .package .bar .right .price, .packagebox .inner .roomupgrade, .packagebox .inner .roomupgrade .bar .right .price, .form-group, .buttonbar, .reviewbox .header a span.arrow, .completionbox .header a.details span.arrow, .completionbox .inner a span.arrow, .panel.gallery .header, .panel.gallery .inner .content-image .img-container .jump-left .arrow, .panel.gallery .inner .content-image .img-container .jump-right .arrow, .panel.gallery .inner .content-image .img-container .slideshow-pause .icon, .panel.maps .header, #occupancyinfoLayer .top, #occupancyinfoLayer .bottom, .tabbed-contents li span {
+    background-image: none; 
+    -webkit-background-size: 0;
 }
 body.useWebFonts h1, .hotelsearchbox .header h3, .hoteldetailbox .header h3, .panel.gallery h3, .panel.maps h3, .panel.grad1 .header h3 span.title, .panel.grad2 .header h3 .button1 span, .panel.roomselection .header h3 span.title, #menu li a, .hotelresultlist .hotel .header h3, .package-detail-layer .header h3, .package-detail-layer .header h3 span.small, .packagebox .header span.title, .ratelistview_roomsontop .room .header h3, .ratelistview_ratesontop .rate .header h3, .ratelistview_combined .roomrate .header h3 {
     text-transform: uppercase;
@@ -309,6 +362,6 @@ body.useWebFonts h1, .hotelsearchbox .header h3, .hoteldetailbox .header h3, .pa
     background: none;
 }
 body, table, tr, th, td, p, div, span, h1, h2, h3, h4, h5, h6, input, textarea {
-font-family: 'Raleway', Arial, sans-serif;
-letter-spacing: 1px;
+    font-family: 'Raleway', Arial, sans-serif;
+    letter-spacing: 1px;
 }

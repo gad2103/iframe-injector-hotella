@@ -13,11 +13,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
-            /*
-                Note:
-                In case there is a /release/ directory found, we don't want to lint that
-                so we use the ! (bang) operator to ignore the specified directory
-            */
+            /* Note: In case there is a /release/ directory found, we don't want to lint that so we use the ! (bang) operator to ignore the specified directory */
             files: ['Gruntfile.js', './assets/**/*.js'],
             options: {
                 curly:   true,
@@ -58,32 +54,29 @@ module.exports = function (grunt) {
         },
         sass: {
             dist: {
-                expand: true,
-                cwd: './assets/sass/',
-                src: ['*.scss'],
-                dest: './assets/css/',
-                ext: '.css'
+                options: {
+                    style: 'compressed',
+                },
+                files: {
+                    './assets/css/hotella-res.min.css': './assets/sass/iframe.scss',
+                    './assets/css/hotella-res-mobi.min.css': './assets/sass/mobile/iframe.scss'
+                }
             },
             dev: {
                 options: {
-                    style: 'expanded',
-                    debugInfo: true,
+                    style: 'compressed',
                     lineNumbers: true
                 },
                 files: {
                     './assets/css/app.css': './assets/sass/app.scss',
-                    './assets/css/hotella-res.css': './assets/sass/iframe.scss'
+                    './assets/css/hotella-res.css': './assets/sass/iframe.scss',
+                    './assets/css/hotella-res-mobi.css': './assets/sass/mobile/iframe.scss'
                 }
-                /*expand: true,
-                cwd: './assets/sass/',
-                src: ['*.scss'],
-                dest: './assets/css/',
-                ext: '.css'*/
             }
         },
         // Run: `grunt watch` from command line for this section to take effect
         watch: {
-            files: ['<%= jshint.files %>', './assets/sass/app.scss', './assets/sass/iframe.scss'],
+            files: ['<%= jshint.files %>', './assets/sass/**/*.scss'],
             options: { livereload: true },
             tasks: ['default']
         },
@@ -99,6 +92,21 @@ module.exports = function (grunt) {
             }
         },
 
+        //autoprefixer
+        autoprefixer: {
+            options: {
+                browsers: ['last 8 versions']
+            },
+            dev: {
+                src: './assets/css/hotella-res.css'
+            },
+            dist: {
+                expand: true,
+                flatten: true,
+                src: './assets/css/*.min.css',
+                dest: './dist/css/'
+            }
+        },
         open: {
             all: {
                 path: 'http://localhost:<%= express.all.options.port %>'
@@ -108,11 +116,11 @@ module.exports = function (grunt) {
     });
 
     // Default Task
-    grunt.registerTask('default', ['jshint', 'sass:dev']);
+    grunt.registerTask('default', ['jshint', 'sass:dev', 'autoprefixer:dev']);
 
     grunt.registerTask('serve', ['jshint', 'sass:dev', 'express', 'open', 'watch']);
 
     // Release Task
-    grunt.registerTask('release', ['jshint', 'test', 'requirejs', 'sass:dist', 'imagemin', 'htmlmin']);
+    grunt.registerTask('release', ['jshint', 'sass:dist', 'autoprefixer:dist']);
 
 };
