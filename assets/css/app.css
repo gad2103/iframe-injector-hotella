@@ -1,1 +1,6 @@
-body{margin:0;padding:0;overflow:hidden}
+/* line 1, ../sass/app.scss */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

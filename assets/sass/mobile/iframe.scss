@@ -369,7 +369,7 @@ div#contentContainer {
         }
     }
     form[name="hotelsel"] {
-        padding: 0 10px;
+        padding: 0;
         margin-bottom: 20px;
         h3 {
             display: none;
@@ -383,9 +383,7 @@ div#contentContainer {
         }
     }
     #reservationPanel {
-        background: transparent;
-        padding: 20px;
-        padding-top: 40px;
+        padding: 40px 0;
         border: $border $dark-bg;
         border-top: none;
         background: $dark-bg;
@@ -404,6 +402,7 @@ div#contentContainer {
         .dates label {
             text-transform: uppercase;
             color: #fff;
+            padding-left: 10px;
         }
         .reserve input {
             display: block;
@@ -426,7 +425,7 @@ div#contentContainer {
                     position: static;
                     width: 100%;
                     select {
-                        width: 100% !important;
+                        width: 94% !important;
                     }
                     label {
                         color: #fff; 

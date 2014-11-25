@@ -1,6 +1,5 @@
 // IFRAME STYLES
 
-@import 'queries';
 
 //globals
 $dark-bg: #171c21;
@@ -365,3 +364,7 @@ body, table, tr, th, td, p, div, span, h1, h2, h3, h4, h5, h6, input, textarea {
     font-family: 'Raleway', Arial, sans-serif;
     letter-spacing: 1px;
 }
+
+// media queries
+@import 'queries';
+
